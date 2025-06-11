@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KangAjieDev - Web Developer</title>
+    <link rel="icon" href="img/logo.png" type="image/png" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(83, 52, 131, 0.3);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(45deg, #00d4ff, #7b68ee, #ff6b9d);
+            background-size: 200% 200%;
+            animation: gradientText 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes gradientText {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        /* Diperbarui: Hover menu */
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 0;
+        }
+
+        .nav-menu li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 100%;
+            height: 100%;
+            background: rgba(83, 52, 131, 0.4);
+            z-index: -1;
+            border-radius: 25px;
+            transition: transform 0.4s ease;
+        }
+
+        .nav-menu li a:hover::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-menu li a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            background: rgba(15, 15, 35, 0.2);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(83, 52, 131, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+            max-width: 600px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00d4ff, #7b68ee);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5);
+            background: linear-gradient(45deg, #7b68ee, #ff6b9d);
+        }
+
+        footer {
+            background: rgba(15, 15, 35, 0.8);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            padding: 2rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid rgba(83, 52, 131, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(15, 15, 35, 0.95);
+                backdrop-filter: blur(25px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                gap: 0;
+                border-top: 1px solid rgba(83, 52, 131, 0.3);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .nav-menu li a {
+                display: block;
+                padding: 1rem;
+                border-radius: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        .hero-content {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <a href="#" class="logo">KangAjieDev</a>
+                <ul class="nav-menu">
+                    <li><a href="#hero"><i class="fas fa-home"></i> HOME</a></li>
+                    <li><a href="#portfolio"><i class="fas fa-briefcase"></i> PORTOFOLIO</a></li>
+                    <li><a href="#blog"><i class="fas fa-blog"></i> BLOG</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> CONTACT</a></li>
+                    <li><a href="#about-us"><i class="fas fa-user"></i> ABOUT US</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Halo, Saya Web Developer</h1>
+            <p>Saya bersemangat membangun website yang bersih, responsif, dan mudah digunakan untuk memberikan
+                pengalaman terbaik bagi pengguna. Siap membantu mewujudkan website impian Anda, mulai dari portofolio,
+                blog, hingga website bisnis.</p>
+            <a href="#portfolio" class="cta-button">
+                <i class="fas fa-eye"></i> View My Work
+            </a>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; font-weight: 700; color: white;">
+            Portfolio</h2>
+            <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="img/portofolio1.PNG" alt="Portfolio 1">
+                <div class="portfolio-content">
+                <h3>Project 1</h3>
+                <p>
+                    Halaman website ini dibuat secara kolaboratif oleh tim di kelas kami, dengan tujuan untuk belajar dan mengembangkan keterampilan web development bersama. Setiap anggota tim berkontribusi dalam proses perancangan, pembuatan konten, serta pengembangan fitur agar website ini menjadi lebih informatif dan menarik.
+                </p>
+                <div class="full-content" style="display: none; text-align: justify;">
+                    <p>
+                    Website ini merupakan hasil kerja sama tim yang terdiri dari beberapa anggota dengan peran berbeda, mulai dari perancang UI/UX, penulis konten, hingga developer. Proses pengembangan dilakukan secara bertahap, dimulai dari perencanaan konsep, pembuatan wireframe, hingga implementasi fitur interaktif.
+                    </p>
+                    <p>
+                    Fitur utama website ini meliputi halaman profil anggota tim, galeri proyek, serta blog yang berisi catatan perjalanan belajar kami. Setiap bagian dirancang agar mudah diakses dan memberikan pengalaman pengguna yang menyenangkan.
+                    </p>
+                    <p>
+                    Anda dapat mengunjungi situs hasil kerja sama tim kami di <a href="https://aerosynth.netlify.app" target="_blank" style="color: #00d4ff; text-decoration: underline;">aerosynth.netlify.app</a>.
+                    </p>
+                </div>
+                <button class="cta-button read-more-btn">View Details</button>
+                </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portofolio2.PNG" alt="Portfolio 2">
+                    <div class="portfolio-content">
+                        <h3>Project 2</h3>
+                        <p>Project 2 ini merupakan halaman beranda yang berisi pengenalan tentang keluarga saya secara
+                            singkat dan sederhana.</p>
+                        <p>Halaman ini menampilkan informasi inti mengenai anggota keluarga, hubungan, serta gambaran
+                            umum suasana keluarga kami dengan tampilan yang mudah dipahami.</p>
+                        <div class="full-content" style="display: none; text-align: justify;">
+                            <p>
+                                Pada halaman ini, Anda dapat melihat profil singkat setiap anggota keluarga, mulai dari
+                                nama, peran, hingga hobi dan aktivitas favorit mereka. Selain itu, terdapat juga narasi
+                                singkat mengenai nilai-nilai yang dijunjung dalam keluarga kami, serta bagaimana kami
+                                saling mendukung satu sama lain.
+                            </p>
+                            <p>
+                                Desain halaman dibuat sederhana namun informatif, sehingga mudah diakses oleh siapa saja
+                                yang ingin mengenal keluarga kami lebih dekat. Fitur interaktif juga ditambahkan agar
+                                pengunjung dapat menjelajahi informasi dengan nyaman.
+                            </p>
+                        </div>
+                        <button class="cta-button read-more-btn">View Details</button>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portofolio3.PNG" alt="Portfolio 3">
+                    <div class="portfolio-content">
+                        <h3>Project 3</h3>
+                        <p>
+                            Project 3 adalah website company profile sederhana yang menampilkan informasi inti tentang sebuah perusahaan, mulai dari visi, misi, layanan, hingga kontak. Website ini dirancang dengan tampilan modern, responsif, dan mudah dinavigasi, sehingga cocok untuk memperkenalkan bisnis secara profesional di dunia digital.
+                        </p>
+                        <div class="full-content" style="display: none; text-align: justify;">
+                            <p>
+                                Website ini dibuat oleh tim profesional yang berpengalaman di bidang web development dan desain. Setiap anggota tim berkontribusi sesuai keahliannya, mulai dari perencanaan struktur, pembuatan desain UI/UX, hingga pengembangan fitur interaktif dan optimasi performa. Dengan kolaborasi yang solid, hasil akhir website menjadi lebih optimal, aman, dan siap bersaing di era digital.
+                            </p>
+                            <p>
+                                Salah satu contoh hasil kerja tim kami adalah situs <a href="https://banyuwangiijentrip.com" target="_blank" style="color: #00d4ff; text-decoration: underline;">banyuwangiijentrip.com</a> yang menampilkan layanan wisata profesional dengan tampilan modern dan fitur lengkap.
+                            </p>
+                        </div>
+                        <button class="cta-button read-more-btn">View Details</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .portfolio {
+                padding: 4rem 2rem;
+                background: rgba(15, 15, 35, 0.9);
+                border-top: 1px solid rgba(83, 52, 131, 0.3);
+            }
+
+            .portfolio-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+
+            .portfolio-item {
+                background: rgba(15, 15, 35, 0.8);
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .portfolio-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .portfolio-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            .portfolio-content {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .portfolio-content h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                color: white;
+            }
+
+            .portfolio-content p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                color: rgba(255, 255, 255, 0.8);
+            }
+        </style>
+    </section>
+
+
+
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; font-weight: 700; color: white;">Blog
+            </h2>
+            <div class="blog-grid">
+                <div class="blog-item">
+                    <img src="img/blog1.png" alt="Kenapa Bisnismu Butuh Website yang Cepat dan Mobile Friendly?">
+                    <div class="blog-content">
+                        <h3>Kenapa Bisnismu Butuh Website yang Cepat dan Mobile Friendly?</h3>
+                        <p>
+                            Di era digital, website adalah wajah utama bisnismu di dunia online. Namun, memiliki website
+                            saja tidak cukup. Kecepatan dan mobile-friendly adalah kunci untuk menarik dan
+                            mempertahankan pengunjung.
+                        </p>
+                        <div class="full-content" style="display: none; text-align: justify;">
+                            <p>
+                                🌐 <strong>Kenapa Kecepatan Website Penting?</strong><br>
+                                Website yang lambat membuat pengunjung meninggalkan situs. Statistik menunjukkan 1 detik
+                                keterlambatan dapat menurunkan konversi hingga 7%.
+                            </p>
+                            <p>
+                                📱 <strong>Mobile-First: Kebutuhan Utama</strong><br>
+                                Dengan lebih dari 70% pengguna internet mengakses melalui perangkat mobile, website yang
+                                tidak mobile-friendly akan sulit menarik perhatian.
+                            </p>
+                            <p>
+                                🔧 <strong>Bagaimana Saya Bisa Membantu</strong><br>
+                                Saya membuat website yang cepat, responsif, SEO-friendly, dan teroptimasi untuk semua
+                                perangkat. <a href="https://wa.me/62881026124253" target="_blank"
+                                    style="color: #00d4ff; text-decoration: underline;">Hubungi saya</a> untuk diskusi
+                                lebih lanjut.
+                            </p>
+                        </div>
+                        <button class="cta-button read-more-btn">Read More</button>
+                    </div>
+                </div>
+                <div class="blog-item">
+                    <img src="img/blog2.png" alt="Studi Kasus – Membangun Website Portofolio dari Nol">
+                    <div class="blog-content">
+                        <h3>Studi Kasus – Membangun Website Portofolio dari Nol</h3>
+                        <p>
+                            Saya membangun KangAjieDev, sebuah website portofolio digital, dari nol untuk menampilkan
+                            proyek terbaik dan memberikan kesan kepada pengunjung. Desain modern, fitur interaktif,
+                            performa yang maksimal.
+                        </p>
+                        <div class="full-content" style="display: none; text-align: justify;">
+                            <p>
+                                Fokus saya adalah desain modern, animasi interaktif yang ringan, dan pengalaman pengguna
+                                yang nyaman di berbagai perangkat.
+                            </p>
+                            <p>
+                                <strong>Teknologi utama:</strong> HTML5, CSS3, Three.js (3D interaktif), GSAP +
+                                ScrollMagic (animasi scroll), serta Flexbox & Grid untuk layout responsif.
+                            </p>
+                            <p>
+                                <strong>Tantangan:</strong> Menggabungkan elemen visual dinamis tanpa mengorbankan
+                                kecepatan website. Solusi saya meliputi lazy loading, minifikasi file, dan caching
+                                browser.
+                            </p>
+                            <p>
+                                <strong>Hasil:</strong> Website ini menunjukkan kemampuan teknis sekaligus cara berpikir
+                                saya, dengan desain dan animasi yang fungsional dan menyenangkan.
+                            </p>
+                            <p>
+                                Kalau kamu butuh website portofolio atau company profile yang indah dan fungsional, saya
+                                siap membantu. Konsultasi gratis, <a href="https://wa.me/62881026124253" target="_blank"
+                                    style="color: #00d4ff; text-decoration: underline;">hubungi saya</a>!
+                            </p>
+                        </div>
+                        <button class="cta-button read-more-btn">Read More</button>
+                    </div>
+                </div>
+                <div class="blog-item">
+                    <img src="img/blog3.png" alt="Punya Website Tapi Gak Dapat Klien? Ini 3 Masalah Umumnya">
+                    <div class="blog-content">
+                        <h3>Punya Website Tapi Gak Dapat Klien? Ini 3 Masalah Umumnya</h3>
+                        <p>
+                            Banyak pemilik bisnis atau freelancer telah memiliki website, namun sering kali merasa
+                            hasilnya belum optimal dan belum memberikan dampak signifikan seperti peningkatan traffic
+                            atau klien baru.
+                        </p>
+                        <div class="full-content" style="display: none; text-align: justify;">
+                            <p>
+                                Berikut ini 3 masalah yang paling sering saya temukan ketika mengaudit website milik
+                                klien:
+                            </p>
+                            <p>
+                                1. <strong>Desain Tidak Membangun Kepercayaan</strong><br>
+                                Desain yang terlalu sederhana, kuno, atau bahkan sulit digunakan bisa membuat pengunjung
+                                meragukan profesionalismu. Website adalah kesan pertama—dan kalau kesan itu buruk,
+                                mereka tidak akan lanjut.
+                            </p>
+                            <p>
+                                Solusi saya: Membuat desain yang bersih, modern, dan sesuai identitas bisnismu.
+                                Menggunakan prinsip UI/UX agar website bukan hanya indah, tapi juga nyaman digunakan.
+                            </p>
+                            <p>
+                                2. <strong>Tidak SEO Friendly</strong><br>
+                                Website yang tidak terstruktur dengan baik sulit ditemukan di Google. Judul halaman,
+                                deskripsi, struktur heading, kecepatan loading—semuanya berperan dalam penilaian mesin
+                                pencari.
+                            </p>
+                            <p>
+                                Solusi saya: Menyusun ulang struktur HTML, mempercepat loading, dan menerapkan
+                                dasar-dasar SEO on-page agar situs kamu lebih mudah ditemukan.
+                            </p>
+                            <p>
+                                3. <strong>Tidak Responsif (Sulit Diakses via HP)</strong><br>
+                                Jika website tidak tampil rapi di layar ponsel, banyak pengguna akan langsung keluar.
+                                Ini adalah kehilangan peluang besar, mengingat mayoritas pengguna mengakses web dari
+                                perangkat mobile.
+                            </p>
+                            <p>
+                                Solusi saya: Mendesain ulang dengan pendekatan mobile-first—website yang menyesuaikan
+                                diri dengan ukuran layar secara otomatis.
+                            </p>
+                            <p>
+                                💬 Jangan biarkan website kamu hanya jadi brosur digital. Jadikan ia alat bantu
+                                penjualan yang aktif!<br>
+                                👉 Konsultasi gratis, saya bantu audit website kamu dan berikan rekomendasi tanpa biaya.
+                                <a href="https://wa.me/62881026124253" target="_blank"
+                                    style="color: #00d4ff; text-decoration: underline;">Klik di sini untuk mulai
+                                    ngobrol</a>.
+                            </p>
+                        </div>
+                        <button class="cta-button read-more-btn">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll('.read-more-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const fullContent = this.previousElementSibling;
+                    if (fullContent && fullContent.classList.contains('full-content')) {
+                        if (fullContent.style.display === 'none' || fullContent.style.display === '') {
+                            fullContent.style.display = 'block';
+                            this.textContent = 'Read Less';
+                            this.style.marginTop = '1rem';
+                        } else {
+                            fullContent.style.display = 'none';
+                            this.textContent = 'Read More';
+                            this.style.marginTop = '0';
+                        }
+                    }
+                });
+            });
+        </script>
+        <style>
+            .blog {
+                padding: 4rem 2rem;
+                background: rgba(15, 15, 35, 0.9);
+                border-top: 1px solid rgba(83, 52, 131, 0.3);
+            }
+
+            .blog-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+
+            .blog-item {
+                background: rgba(15, 15, 35, 0.8);
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .blog-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .blog-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            .blog-content {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .blog-content h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                color: white;
+            }
+
+            .blog-content p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                color: rgba(255, 255, 255, 0.8);
+            }
+        </style>
+    </section>
+
+ <section id="contact" class="contact">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; font-weight: 700; color: white;">
+            Contact</h2>
+        <div class="contact-form">
+            <form id="contact-form" action="https://formspree.io/f/xldnjrkv" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="_replyto" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+            <p id="response-message" style="margin-top: 1rem; color: white;"></p>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Hindari reload
+
+    const form = event.target;
+    const data = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            document.getElementById('response-message').innerText = 'Pesan Anda telah terkirim!';
+            document.getElementById('response-message').style.color = 'lightgreen';
+            form.reset();
+        } else {
+            document.getElementById('response-message').innerText = 'Terjadi kesalahan saat mengirim pesan.';
+            document.getElementById('response-message').style.color = 'red';
+        }
+    }).catch(error => {
+        document.getElementById('response-message').innerText = 'Gagal menghubungi server.';
+        document.getElementById('response-message').style.color = 'red';
+    });
+});
+</script>
+
+        </div>
+        <style>
+            .contact {
+                padding: 4rem 2rem;
+                background: rgba(15, 15, 35, 0.9);
+                border-top: 1px solid rgba(83, 52, 131, 0.3);
+            }
+
+            .contact-form {
+                max-width: 600px;
+                margin: 0 auto;
+                background: rgba(15, 15, 35, 0.8);
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: white;
+                font-weight: 500;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                padding: 0.8rem;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 10px;
+                background: rgba(15, 15, 35, 0.9);
+                color: white;
+                font-size: 1rem;
+                outline: none;
+                transition: border-color 0.3s ease;
+            }
+
+            .form-group input:focus,
+            .form-group textarea:focus {
+                border-color: rgba(0, 212, 255, 0.5);
+            }
+
+            .cta-button {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-top: 1rem;
+            }
+        </style>
+        <script>
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !message) {
+                    e.preventDefault();
+                    alert('Please fill out all fields before submitting.');
+                }
+                // If all fields are filled, allow the form to submit to mail.php (no preventDefault)
+            });
+        </script>
+    </section>
+
+    <section id="about-us" class="about-us">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; font-weight: 700; color: white;">
+                About Us</h2>
+            <div class="about-content">
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; text-align: center;">
+                    Selamat datang di KangAjieDev! Kami adalah tim web developer yang bersemangat dalam menciptakan aplikasi web yang bersih, responsif, dan mudah digunakan. Misi kami adalah memberikan pengalaman digital terbaik yang sesuai dengan kebutuhan klien dan penggunanya.
+                </p>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; text-align: center; margin-top: 1rem;">
+                    Dengan pengalaman bertahun-tahun di industri ini, kami menguasai teknologi web modern dan prinsip desain terkini. Baik untuk membangun portofolio, blog, maupun website bisnis, kami siap membantu mewujudkan visi Anda.
+                </p>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; text-align: center; margin-top: 1rem;">
+                    Kami percaya bahwa setiap website harus memiliki karakter unik yang mencerminkan identitas pemiliknya. Oleh karena itu, kami selalu memulai setiap proyek dengan memahami kebutuhan dan tujuan Anda secara mendalam, lalu menerjemahkannya ke dalam desain dan fitur yang tepat sasaran.
+                </p>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; text-align: center; margin-top: 1rem;">
+                    Layanan kami meliputi:
+                </p>
+                <ul style="font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin: 1rem auto 0 auto; max-width: 600px; text-align: left;">
+                    <li>✔️ Pembuatan website portofolio, company profile, blog, dan toko online</li>
+                    <li>✔️ Desain UI/UX modern dan mobile-friendly</li>
+                    <li>✔️ Optimasi kecepatan dan SEO</li>
+                    <li>✔️ Integrasi dengan berbagai layanan pihak ketiga (API, payment gateway, dsb.)</li>
+                    <li>✔️ Maintenance dan pengelolaan website</li>
+                    <li>✔️ Migrasi website lama ke platform baru</li>
+                    <li>✔️ Pembuatan landing page untuk promosi produk/jasa</li>
+                    <li>✔️ Konsultasi branding digital dan strategi pemasaran online</li>
+                    <li>✔️ Pengembangan aplikasi berbasis web (custom system, dashboard, dsb.)</li>
+                </ul>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; text-align: center; margin-top: 1rem;">
+                    Kami selalu mengutamakan komunikasi yang terbuka dan transparan dengan klien. Setiap proses dikerjakan secara kolaboratif agar hasil akhir benar-benar sesuai harapan.
+                </p>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; text-align: center; margin-top: 1rem;">
+                    Tim kami terdiri dari web developer, UI/UX designer, dan digital strategist yang siap membantu Anda dari tahap perencanaan, desain, pengembangan, hingga maintenance. Kami juga rutin mengikuti perkembangan teknologi terbaru agar solusi yang kami tawarkan selalu relevan dan optimal.
+                </p>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; text-align: center; margin-top: 1rem;">
+                    Kami telah dipercaya oleh berbagai klien, mulai dari UMKM, startup, hingga perusahaan besar untuk mengembangkan website dan aplikasi yang mendukung pertumbuhan bisnis mereka. Setiap proyek menjadi portofolio berharga yang terus memotivasi kami untuk memberikan hasil terbaik.
+                </p>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; text-align: center; margin-top: 1rem;">
+                    Jangan ragu untuk menghubungi kami jika Anda ingin berdiskusi atau konsultasi gratis mengenai kebutuhan website Anda. Kami siap membantu dari tahap perencanaan hingga website Anda online dan berkembang!
+                </p>
+                <div style="margin-top:2rem; text-align:center;">
+                    <a href="https://wa.me/62881026124253" target="_blank" class="cta-button" style="display:inline-block; width:auto;">Konsultasi Gratis Sekarang</a>
+                </div>
+            </div>
+        </div>
+        <style>
+            .about-us {
+                padding: 4rem 2rem;
+                background: rgba(15, 15, 35, 0.9);
+                border-top: 1px solid rgba(83, 52, 131, 0.3);
+            }
+
+            .about-content {
+                max-width: 800px;
+                margin: 0 auto;
+                background: rgba(15, 15, 35, 0.8);
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+            }
+        </style>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Developed by KangAjieDev</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu li a').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.8)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<!-- index.html halaman portofolio -->
+
+
+<!-- css -->
+<!-- js -->
