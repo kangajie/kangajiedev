@@ -364,12 +364,49 @@
             <nav class="nav-container">
                 <a href="#" class="logo">KangAjieDev</a>
                 <ul class="nav-menu">
-                    <li><a href="#hero"><i class="fas fa-home"></i> HOME</a></li>
-                    <li><a href="#portfolio"><i class="fas fa-briefcase"></i> PORTOFOLIO</a></li>
-                    <li><a href="#blog"><i class="fas fa-blog"></i> BLOG</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i> CONTACT</a></li>
-                    <li><a href="#about-us"><i class="fas fa-user"></i> ABOUT US</a></li>
+                    <li><a href="#hero" class="nav-link"><i class="fas fa-home"></i> HOME</a></li>
+                    <li><a href="#portfolio" class="nav-link"><i class="fas fa-briefcase"></i> PORTOFOLIO</a></li>
+                    <li><a href="#blog" class="nav-link"><i class="fas fa-blog"></i> BLOG</a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> CONTACT</a></li>
+                    <li><a href="#about-us" class="nav-link"><i class="fas fa-user"></i> ABOUT US</a></li>
                 </ul>
+                <style>
+                    .nav-menu .nav-link {
+                        color: white;
+                        text-decoration: none;
+                        font-weight: 500;
+                        padding: 0.5rem 1.2rem;
+                        border-radius: 25px;
+                        position: relative;
+                        transition: all 0.3s;
+                        overflow: hidden;
+                        z-index: 0;
+                        display: inline-block;
+                    }
+                    .nav-menu .nav-link::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        transform: translateX(-50%) scaleX(0);
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, #00d4ff 0%, #7b68ee 100%);
+                        opacity: 0.18;
+                        border-radius: 25px;
+                        z-index: -1;
+                        transition: transform 0.4s cubic-bezier(.4,2,.6,1);
+                    }
+                    .nav-menu .nav-link:hover::before {
+                        transform: translateX(-50%) scaleX(1);
+                    }
+                    .nav-menu .nav-link:hover {
+                        color: #00d4ff;
+                        box-shadow: 0 2px 12px rgba(0,212,255,0.15);
+                        background: rgba(123,104,238,0.08);
+                        transform: translateY(-2px) scale(1.04);
+                    }
+                </style>
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -411,7 +448,7 @@
                     Fitur utama website ini meliputi halaman profil anggota tim, galeri proyek, serta blog yang berisi catatan perjalanan belajar kami. Setiap bagian dirancang agar mudah diakses dan memberikan pengalaman pengguna yang menyenangkan.
                     </p>
                     <p>
-                    Anda dapat mengunjungi situs hasil kerja sama tim kami di <a href="https://aerosynth.netlify.app" target="_blank" style="color: #00d4ff; text-decoration: underline;">aerosynth.netlify.app</a>.
+                    Anda dapat mengunjungi situs hasil kerja sama tim kami di <a href="https://aerosynth.kangajie.site" target="_blank" style="color: #00d4ff; text-decoration: underline;">aerosynth.kangajie.site</a>.
                     </p>
                 </div>
                 <button class="cta-button read-more-btn">View Details</button>
@@ -512,7 +549,26 @@
         </style>
     </section>
 
-
+<!-- Advertisement Section Start -->
+<section class="advertisement-section" style="padding:2rem 0; background:rgba(0,0,0,0.12); border-top:1px solid rgba(83,52,131,0.15); border-bottom:1px solid rgba(83,52,131,0.15); text-align:center;">
+    <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap;">
+        <!-- Slot 1 -->
+        <div style="background:rgba(255,255,255,0.06); border-radius:14px; box-shadow:0 2px 10px rgba(0,212,255,0.09); padding:1.3rem 1.5rem; max-width:340px; width:100%;">
+            <a href="https://wa.me/62881026124253" target="_blank" rel="noopener">
+                <img src="img/jasa.png" alt="Advertisement 1" style="max-width:220px; width:100%; height:auto; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+            </a>
+            <p style="margin-top:0.9rem; color:rgba(255,255,255,0.7); font-size:1.05rem;">Advertisement</p>
+        </div>
+        <!-- Slot 2 -->
+        <div style="background:rgba(255,255,255,0.06); border-radius:14px; box-shadow:0 2px 10px rgba(0,212,255,0.09); padding:1.3rem 1.5rem; max-width:340px; width:100%;">
+            <a href="#" target="_blank" rel="noopener">
+                <img src="img/jasa.png" alt="Advertisement 2" style="max-width:220px; width:100%; height:auto; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+            </a>
+            <p style="margin-top:0.9rem; color:rgba(255,255,255,0.7); font-size:1.05rem;">Advertisement</p>
+        </div>
+    </div>
+</section>
+<!-- Advertisement Section End -->
 
     <section id="blog" class="blog">
         <div class="container">
@@ -834,6 +890,22 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         </script>
     </section>
 
+    <div style="margin: 2rem 0; text-align: center;">
+    <h3 style="color: white; margin-bottom: 1rem;">Lokasi Saya</h3>
+    <div style="max-width: 100%; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,212,255,0.1); display: inline-block;">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.338026106538!2d114.367856!3d-7.197978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd155b7e2c4e2e3%3A0x7e2e6c7e5e7e7e7e!2sGenteng%2C%20Banyuwangi%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1718000000000!5m2!1sid!2sid" 
+            width="100%" 
+            height="350" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Lokasi KangAjieDev"></iframe>
+    </div>
+    <p style="color:rgba(255,255,255,0.8); margin-top:1rem;">Glenmore, Banyuwangi, Jawa Timur</p>
+</div>
+
     <section id="about-us" class="about-us">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; font-weight: 700; color: white;">
@@ -899,8 +971,53 @@ document.getElementById('contact-form').addEventListener('submit', function(even
 
     <footer>
         <div class="container">
+            <nav style="margin-bottom: 1rem;"></nav>
+                <ul class="footer-menu" style="display: flex; justify-content: center; gap: 2rem; list-style: none; padding: 0; margin: 0;">
+                    <li><a href="#hero" class="footer-link">Home</a></li>
+                    <li><a href="#portfolio" class="footer-link">Portfolio</a></li>
+                    <li><a href="#blog" class="footer-link">Blog</a></li>
+                    <li><a href="#contact" class="footer-link">Contact</a></li>
+                    <li><a href="#about-us" class="footer-link">About Us</a></li>
+                </ul>
+            </nav>
             <p>&copy; 2025 Developed by KangAjieDev</p>
         </div>
+        <style>
+            .footer-menu .footer-link {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                padding: 0.5rem 1.2rem;
+                border-radius: 25px;
+                position: relative;
+                transition: all 0.3s;
+                overflow: hidden;
+                z-index: 0;
+            }
+            .footer-menu .footer-link::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%) scaleX(0);
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, #00d4ff 0%, #7b68ee 100%);
+                opacity: 0.18;
+                border-radius: 25px;
+                z-index: -1;
+                transition: transform 0.4s cubic-bezier(.4,2,.6,1);
+            }
+            .footer-menu .footer-link:hover::before {
+                transform: translateX(-50%) scaleX(1);
+            }
+            .footer-menu .footer-link:hover {
+                color: #00d4ff;
+                box-shadow: 0 2px 12px rgba(0,212,255,0.15);
+                background: rgba(123,104,238,0.08);
+                transform: translateY(-2px) scale(1.04);
+            }
+        </style>
     </footer>
 
     <script>
