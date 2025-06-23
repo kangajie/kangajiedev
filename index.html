@@ -822,7 +822,7 @@
         }
         window.addEventListener('DOMContentLoaded', initGemini);
 
-       async function sendGeminiMessage(userMessage) {
+async function sendGeminiMessage(userMessage) {
     if (!geminiChat) await initGemini();
     try {
         const result = await geminiChat.sendMessage(userMessage);
@@ -833,6 +833,7 @@
         return "Maaf, chatbot sedang tidak dapat merespon.";
     }
 }
+
 
 
         document.addEventListener("DOMContentLoaded", function () {
