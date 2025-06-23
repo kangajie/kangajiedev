@@ -822,18 +822,18 @@
         }
         window.addEventListener('DOMContentLoaded', initGemini);
 
-        async function sendGeminiMessage(userMessage) {
-            if (!geminiChat) await initGemini();
-            try {
-                // Prompt lebih umum agar Gemini menjawab apapun pertanyaan dengan maksimal
-                const prompt = `Jawablah pertanyaan berikut secara jelas, informatif, dan ramah. Jika pertanyaan berkaitan dengan web developer, portofolio, jasa, kontak, atau informasi di website ini, gunakan data yang relevan. Jika di luar topik, tetap jawab sebaik mungkin sesuai kemampuanmu sebagai AI. Pertanyaan: "${userMessage}"`;
-                const result = await geminiChat.sendMessage(prompt);
-                const response = await result.response;
-                return response.text();
-            } catch (e) {
-                return "Maaf, chatbot sedang tidak dapat merespon.";
-            }
-        }
+       async function sendGeminiMessage(userMessage) {
+    if (!geminiChat) await initGemini();
+    try {
+        const result = await geminiChat.sendMessage(userMessage);
+        const response = await result.response;
+        return response.text();
+    } catch (e) {
+        console.error("Chatbot error:", e);
+        return "Maaf, chatbot sedang tidak dapat merespon.";
+    }
+}
+
 
         document.addEventListener("DOMContentLoaded", function () {
             // Tambahkan tombol chatbot ke pojok kanan bawah
