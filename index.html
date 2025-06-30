@@ -802,7 +802,7 @@
      <!-- Gemini Chatbot Start -->
     <script>
         // Konfigurasi Backend Next.js
-        const BACKEND_URL = "https://backend-k3ki.vercel.app/api/chat"; // URL backend Vercel Anda
+        const BACKEND_URL = "https://backend-k3ki.vercel.app"; // URL backend Vercel Anda
 
         // Fungsi untuk berkomunikasi dengan backend Next.js
         async function sendGeminiMessage(userMessage) {
@@ -848,28 +848,28 @@
 
 
   document.addEventListener("DOMContentLoaded", function () {
-    const chatBtn = document.createElement("button");
-    chatBtn.id = "gemini-chat-btn";
-    chatBtn.title = "Chat dengan AI";
-    chatBtn.innerHTML = '<i class="fas fa-robot"></i>';
-    document.body.appendChild(chatBtn);
+  const chatBtn = document.createElement("button");
+  chatBtn.id = "gemini-chat-btn";
+  chatBtn.title = "Chat dengan AI";
+  chatBtn.innerHTML = '<i class="fas fa-robot"></i>';
+  document.body.appendChild(chatBtn);
 
-    const chatBox = document.createElement("div");
-    chatBox.id = "gemini-chatbox";
-    chatBox.innerHTML = `
-      <div id="gemini-chat-header">
-        KangAjieDev Chatbot
-        <button id="gemini-chat-close" title="Tutup">&times;</button>
-      </div>
-      <div id="gemini-chat-messages">
-        <div class="gemini-bot-msg">Halo! Saya asisten AI KangAjieDev. Silakan tanya apa saja tentang website ini, jasa, portofolio, atau kontak.</div>
-      </div>
-      <form id="gemini-chat-form" autocomplete="off">
-        <input id="gemini-chat-input" type="text" placeholder="Tulis pertanyaan..." required />
-        <button id="gemini-chat-send" type="submit" title="Kirim"><i class="fas fa-paper-plane"></i></button>
-      </form>
-    `;
-    document.body.appendChild(chatBox);
+  const chatBox = document.createElement("div");
+  chatBox.id = "gemini-chatbox";
+  chatBox.innerHTML = `
+    <div id="gemini-chat-header">
+      KangAjieDev Chatbot
+      <button id="gemini-chat-close" title="Tutup">&times;</button>
+    </div>
+    <div id="gemini-chat-messages">
+      <div class="gemini-bot-msg">Halo! Saya asisten AI KangAjieDev. Silakan tanya apa saja tentang website ini, jasa, portofolio, atau kontak.</div>
+    </div>
+    <form id="gemini-chat-form" autocomplete="off">
+      <input id="gemini-chat-input" type="text" placeholder="Tulis pertanyaan..." required />
+      <button id="gemini-chat-send" type="submit" title="Kirim"><i class="fas fa-paper-plane"></i></button>
+    </form>
+  `;
+  document.body.appendChild(chatBox);
 
     const style = document.createElement("style");
     style.textContent = `
