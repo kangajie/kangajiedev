@@ -397,23 +397,45 @@
                         z-index: -1;
                         transition: transform 0.4s cubic-bezier(.4,2,.6,1);
                     }
-                    .nav-menu .nav-link:hover::before {
+                    .nav-menu .nav-link:hover::before,
+                    .nav-menu .nav-link:focus::before {
                         transform: translateX(-50%) scaleX(1);
                     }
-                    .nav-menu .nav-link:hover {
+                    .nav-menu .nav-link:hover,
+                    .nav-menu .nav-link:focus {
                         color: #00d4ff;
                         box-shadow: 0 2px 12px rgba(0,212,255,0.15);
                         background: rgba(123,104,238,0.08);
                         transform: translateY(-2px) scale(1.04);
                     }
                 </style>
-                <div class="hamburger">
+                <div class="hamburger" id="hamburger-menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
             </nav>
         </div>
+        <script>
+            // Hamburger menu toggle for mobile
+            document.addEventListener('DOMContentLoaded', function () {
+                const hamburger = document.getElementById('hamburger-menu');
+                const navMenu = document.querySelector('.nav-menu');
+                hamburger.addEventListener('click', function () {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+                // Optional: close menu when a link is clicked (mobile UX)
+                document.querySelectorAll('.nav-menu .nav-link').forEach(link => {
+                    link.addEventListener('click', function () {
+                        if (window.innerWidth <= 768) {
+                            hamburger.classList.remove('active');
+                            navMenu.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        </script>
     </header>
 
     <section id="hero" class="hero">
@@ -428,7 +450,7 @@
         </div>
     </section>
     <section id="portfolio" class="portfolio">
-        <div class="container">
+        <div class="container" style="max-width: 900px; margin: 0 auto;">
             <h2 style="text-align: center; margin-bottom: 1.3rem; font-size: 1.7rem; font-weight: 700; color: white;">
                 Portfolio</h2>
             <div class="portfolio-grid">
@@ -1199,7 +1221,7 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         </script>
     </section>
     <div style="margin: 2rem 0; text-align: center;">
-        <h3 style="color: white; margin-bottom: 1rem;">Lokasi saya berada di selatan Masjid Fajrus Sa'adah</h3>
+        <h3 style="color: white; margin-bottom: 1rem;">Selatan Masjid Fajrus Sa'adah</h3>
         <div style="max-width: 350px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,212,255,0.1); display: inline-block;">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3958.991379322397!2d114.0747615!3d-8.2842649!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6ad142a2ccd5f%3A0xed505798b3a19b9!2sMasjid%20Fajrus%20saadah!5e0!3m2!1sid!2sid!4v1718000000000!5m2!1sid!2sid"
@@ -1218,140 +1240,240 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         <div class="container">
             <h2 class="about-title">About Us</h2>
             <div class="about-content">
-            <p>
-                &emsp;Selamat datang di KangAjieDev! Kami adalah tim web developer yang bersemangat dalam menciptakan aplikasi web yang bersih, responsif, dan mudah digunakan. Misi kami adalah memberikan pengalaman digital terbaik yang sesuai dengan kebutuhan klien dan penggunanya.
-            </p>
-            <p>
-                &emsp;Dengan pengalaman bertahun-tahun di industri ini, kami menguasai teknologi web modern dan prinsip desain terkini. Baik untuk membangun portofolio, blog, maupun website bisnis, kami siap membantu mewujudkan visi Anda.
-            </p>
-            <p>
-                &emsp;Kami percaya bahwa setiap website harus memiliki karakter unik yang mencerminkan identitas pemiliknya. Oleh karena itu, kami selalu memulai setiap proyek dengan memahami kebutuhan dan tujuan Anda secara mendalam, lalu menerjemahkannya ke dalam desain dan fitur yang tepat sasaran.
-            </p>
-            <p>
-                &emsp;Layanan kami meliputi:
-            </p>
-            <ul class="about-list">
-                <li>✔️ Pembuatan website portofolio, company profile, blog, dan toko online</li>
-                <li>✔️ Desain UI/UX modern dan mobile-friendly</li>
-                <li>✔️ Optimasi kecepatan dan SEO</li>
-                <li>✔️ Integrasi dengan berbagai layanan pihak ketiga (API, payment gateway, dsb.)</li>
-                <li>✔️ Maintenance dan pengelolaan website</li>
-                <li>✔️ Migrasi website lama ke platform baru</li>
-                <li>✔️ Pembuatan landing page untuk promosi produk/jasa</li>
-                <li>✔️ Konsultasi branding digital dan strategi pemasaran online</li>
-                <li>✔️ Pengembangan aplikasi berbasis web (custom system, dashboard, dsb.)</li>
-            </ul>
-            <p>
-                &emsp;Kami selalu mengutamakan komunikasi yang terbuka dan transparan dengan klien. Setiap proses dikerjakan secara kolaboratif agar hasil akhir benar-benar sesuai harapan.
-            </p>
-            <p>
-                &emsp;Tim kami terdiri dari web developer, UI/UX designer, dan digital strategist yang siap membantu Anda dari tahap perencanaan, desain, pengembangan, hingga maintenance. Kami juga rutin mengikuti perkembangan teknologi terbaru agar solusi yang kami tawarkan selalu relevan dan optimal.
-            </p>
-            <p>
-                &emsp;Kami telah dipercaya oleh berbagai klien, mulai dari UMKM, startup, hingga perusahaan besar untuk mengembangkan website dan aplikasi yang mendukung pertumbuhan bisnis mereka. Setiap proyek menjadi portofolio berharga yang terus memotivasi kami untuk memberikan hasil terbaik.
-            </p>
-            <p>
-                &emsp;Jangan ragu untuk menghubungi kami jika Anda ingin berdiskusi atau konsultasi gratis mengenai kebutuhan website Anda. Kami siap membantu dari tahap perencanaan hingga website Anda online dan berkembang!
-            </p>
-            <div style="margin-top:1.5rem; text-align:center;">
-                <a href="https://wa.me/62881026124253" target="_blank" class="cta-button" style="display:inline-block; width:auto;">Konsultasi Gratis Sekarang</a>
-            </div>
+                <div class="about-summary">
+                    Selamat datang di KangAjieDev! Kami adalah tim web developer yang bersemangat dalam menciptakan aplikasi web yang bersih, responsif, dan mudah digunakan. Misi kami adalah memberikan pengalaman digital terbaik yang sesuai dengan kebutuhan klien dan penggunanya.
+                </div>
+                <div class="about-full-content">
+                    <p>Selamat datang di KangAjieDev! Kami adalah tim web developer yang bersemangat dalam menciptakan aplikasi web yang bersih, responsif, dan mudah digunakan. Misi kami adalah memberikan pengalaman digital terbaik yang sesuai dengan kebutuhan klien dan penggunanya.</p>
+                    <p>Dengan pengalaman bertahun-tahun di industri ini, kami menguasai teknologi web modern dan prinsip desain terkini. Baik untuk membangun portofolio, blog, maupun website bisnis, kami siap membantu mewujudkan visi Anda.</p>
+                    <p>Kami percaya bahwa setiap website harus memiliki karakter unik yang mencerminkan identitas pemiliknya. Oleh karena itu, kami selalu memulai setiap proyek dengan memahami kebutuhan dan tujuan Anda secara mendalam, lalu menerjemahkannya ke dalam desain dan fitur yang tepat sasaran.</p>
+                    <p>Layanan kami meliputi:</p>
+                    <ul class="about-list">
+                        <li>✔️ Pembuatan website portofolio, company profile, blog, dan toko online</li>
+                        <li>✔️ Desain UI/UX modern dan mobile-friendly</li>
+                        <li>✔️ Optimasi kecepatan dan SEO</li>
+                        <li>✔️ Integrasi dengan berbagai layanan pihak ketiga (API, payment gateway, dsb.)</li>
+                        <li>✔️ Maintenance dan pengelolaan website</li>
+                        <li>✔️ Migrasi website lama ke platform baru</li>
+                        <li>✔️ Pembuatan landing page untuk promosi produk/jasa</li>
+                        <li>✔️ Konsultasi branding digital dan strategi pemasaran online</li>
+                        <li>✔️ Pengembangan aplikasi berbasis web (custom system, dashboard, dsb.)</li>
+                    </ul>
+                    <p>Kami selalu mengutamakan komunikasi yang terbuka dan transparan dengan klien. Setiap proses dikerjakan secara kolaboratif agar hasil akhir benar-benar sesuai harapan.</p>
+                    <p>Tim kami terdiri dari web developer, UI/UX designer, dan digital strategist yang siap membantu Anda dari tahap perencanaan, desain, pengembangan, hingga maintenance. Kami juga rutin mengikuti perkembangan teknologi terbaru agar solusi yang kami tawarkan selalu relevan dan optimal.</p>
+                    <p>Kami telah dipercaya oleh berbagai klien, mulai dari UMKM, startup, hingga perusahaan besar untuk mengembangkan website dan aplikasi yang mendukung pertumbuhan bisnis mereka. Setiap proyek menjadi portofolio berharga yang terus memotivasi kami untuk memberikan hasil terbaik.</p>
+                    <p>Jangan ragu untuk menghubungi kami jika Anda ingin berdiskusi atau konsultasi gratis mengenai kebutuhan website Anda. Kami siap membantu dari tahap perencanaan hingga website Anda online dan berkembang!</p>
+                </div>
+                <div class="about-btn-wrap"></div>
+                    <button class="cta-button about-read-more-btn">Read More</button>
+                </div>
             </div>
         </div>
-        <style>
-            .about-title {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            }
-            .about-content {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(15, 15, 35, 0.8);
-            padding: 1.2rem 1.2rem 1.5rem 1.2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.08);
-            font-size: 1rem;
-            color: rgba(255,255,255,0.88);
-            line-height: 1.7;
-            }
-            .about-content p {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.85);
-            margin-top: 1rem;
-            margin-bottom: 0;
-            text-align: justify;
-            text-indent: 2em;
-            }
-            .about-content p:first-child {
-            margin-top: 0;
-            }
-            .about-list {
-            font-size: 0.98rem;
-            color: rgba(255,255,255,0.82);
-            line-height: 1.7;
-            margin: 1rem auto 0 auto;
-            max-width: 520px;
-            text-align: left;
-            padding-left: 1.1rem;
-            }
-            .about-list li {
-            margin-bottom: 0.4rem;
-            }
-            @media (max-width: 900px) {
-            .about-content {
-                max-width: 95vw;
-                padding: 1rem 0.8rem 1.2rem 0.8rem;
-            }
-            .about-title {
-                font-size: 1.5rem;
-            }
-            }
-            @media (max-width: 600px) {
-            .about-content {
-                font-size: 0.97rem;
-                padding: 0.9rem 0.5rem 1rem 0.5rem;
-                border-radius: 9px;
-            }
-            .about-title {
-                font-size: 1.25rem;
-            }
-            .about-list {
-                font-size: 0.93rem;
-                max-width: 98vw;
-                padding-left: 0.9rem;
-            }
-            }
-            @media (max-width: 400px) {
-            .about-content {
-                font-size: 0.92rem;
-                padding: 0.7rem 0.2rem 0.7rem 0.2rem;
-            }
-            .about-title {
-                font-size: 1.05rem;
-            }
-            }
-        </style>
-        </section>
         <style>
             .about-us {
                 padding: 4rem 2rem;
                 background: rgba(15, 15, 35, 0.9);
                 border-top: 1px solid rgba(83, 52, 131, 0.3);
             }
-
+            .about-title {
+                text-align: center;
+                margin-bottom: 1.5rem;
+                font-size: 1.7rem;
+                font-weight: 700;
+                color: white;
+            }
             .about-content {
-                max-width: 800px;
+                max-width: 600px;
                 margin: 0 auto;
-                background: rgba(15, 15, 35, 0.8);
-                padding: 2rem;
+                background: rgba(15,15,35,0.8);
+                padding: 1.5rem;
                 border-radius: 15px;
-                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+                box-shadow: 0 4px 20px rgba(0,212,255,0.1);
+                font-size: 1rem;
+                color: rgba(255,255,255,0.88);
+                line-height: 1.7;
+            }
+            .about-summary {
+                text-align: justify;
+                text-indent: 2em;
+            }
+            .about-full-content {
+                display: none;
+                text-align: justify;
+            }
+            .about-full-content p {
+                text-indent: 2em;
+                margin-top: 1rem;
+                margin-bottom: 0;
+            }
+            .about-list {
+                font-size: 0.98rem;
+                color: rgba(255,255,255,0.82);
+                line-height: 1.7;
+                margin: 1rem auto 0 auto;
+                max-width: 520px;
+                text-align: left;
+                padding-left: 1.1rem;
+            }
+            .about-list li {
+                margin-bottom: 0.4rem;
+            }
+            .about-btn-wrap {
+                text-align: center;
+                margin-top: 1.2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+            .about-read-more-btn {
+                width: 100%;
+                max-width: 180px;
+                min-width: 110px;
+                margin-top: 1rem;
+                font-size: 0.93rem;
+                padding: 0.6rem 0;
+                border-radius: 50px;
+                background: linear-gradient(45deg, #00d4ff, #7b68ee);
+                color: white;
+                font-weight: 600;
+                border: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 20px rgba(0,212,255,0.13);
+                position: relative;
+                overflow: hidden;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .about-read-more-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                transition: left 0.5s;
+            }
+            .about-read-more-btn:hover::before {
+                left: 100%;
+            }
+            .about-read-more-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 25px rgba(0,212,255,0.18);
+                background: linear-gradient(45deg, #7b68ee, #ff6b9d);
+                color: #fff;
+            }
+            @media (max-width: 900px) {
+                .about-content {
+                    max-width: 95vw;
+                    padding: 1rem 0.8rem 1.2rem 0.8rem;
+                }
+                .about-title {
+                    font-size: 1.5rem;
+                }
+            }
+            @media (max-width: 700px) {
+                .about-us {
+                    padding: 2.2rem 0.5rem;
+                }
+                .about-content {
+                    padding: 1rem 0.7rem 1.2rem 0.7rem;
+                    border-radius: 12px;
+                }
+                .about-btn-wrap {
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                }
+                .about-read-more-btn {
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                }
+            }
+            @media (max-width: 600px) {
+                .about-content {
+                    font-size: 0.97rem;
+                    padding: 0.9rem 0.5rem 1rem 0.5rem;
+                    border-radius: 9px;
+                }
+                .about-title {
+                    font-size: 1.25rem;
+                }
+                .about-list {
+                    font-size: 0.93rem;
+                    max-width: 98vw;
+                    padding-left: 0.9rem;
+                }
+                .about-read-more-btn {
+                    font-size: 0.95rem;
+                    padding: 0.6rem 1.2rem;
+                    min-width: 110px;
+                    max-width: 180px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                }
+                .about-btn-wrap {
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                }
+            }
+            @media (max-width: 400px) {
+                .about-content {
+                    font-size: 0.92rem;
+                    padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+                }
+                .about-title {
+                    font-size: 1.05rem;
+                }
+                .about-read-more-btn {
+                    font-size: 0.92rem;
+                    padding: 0.5rem 0.7rem;
+                    min-width: 90px;
+                    max-width: 120px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                }
+                .about-us {
+                    padding: 1.2rem 0.1rem;
+                }
+                .about-btn-wrap {
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                }
             }
         </style>
     </section>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.querySelector('.about-read-more-btn');
+        const full = document.querySelector('.about-full-content');
+        const summary = document.querySelector('.about-summary');
+        if (btn && full && summary) {
+            btn.addEventListener('click', function() {
+                if (full.style.display === 'none' || full.style.display === '') {
+                    full.style.display = 'block';
+                    summary.style.display = 'none';
+                    btn.textContent = 'Read Less';
+                } else {
+                    full.style.display = 'none';
+                    summary.style.display = 'block';
+                    btn.textContent = 'Read More';
+                }
+            });
+            // Set initial state
+            full.style.display = 'none';
+            summary.style.display = 'block';
+            btn.textContent = 'Read More';
+        }
+    });
+    </script>
     <footer>
         <div class="container">
             <nav style="margin-bottom: 1rem;">
