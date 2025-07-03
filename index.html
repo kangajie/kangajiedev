@@ -1,6 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Dark/Light Mode Toggle Start -->
+<style>
+    .theme-toggle-btn {
+        position: fixed;
+        top: 50%;
+        right: 32px;
+        transform: translateY(-50%);
+        z-index: 1200;
+        background: linear-gradient(45deg, #00d4ff, #7b68ee);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 12px rgba(0,212,255,0.13);
+        transition: background 0.3s, color 0.3s;
+    }
+    .theme-toggle-btn:hover {
+        background: linear-gradient(45deg, #7b68ee, #ff6b9d);
+    }
+    @media (max-width: 600px) {
+        .theme-toggle-btn {
+            right: 12px;
+            width: 38px;
+            height: 38px;
+            font-size: 1.1rem;
+        }
+    }
+    /* Light Mode Styles */
+    body.light-mode {
+        color: #23233a !important;
+        background: linear-gradient(135deg, #e3e5ee 0%, #e6e7f2 25%, #e7e8f3 50%, #e3e5ee 75%, #e7e2f2 100%) !important;
+        background-size: 400% 400% !important;
+        animation: gradientShift 15s ease infinite !important;
+    }
+    body.light-mode header,
+    body.light-mode footer,
+    body.light-mode .portfolio,
+    body.light-mode .blog,
+    body.light-mode .contact,
+    body.light-mode .about-us {
+        background: rgba(235,237,245,0.97) !important;
+        color: #23233a !important;
+        border-color: #bfc6e6 !important;
+        box-shadow: 0 2px 12px rgba(123,104,238,0.018);
+    }
+    body.light-mode .container {
+        background: none !important;
+        color: #23233a !important;
+    }
+    body.light-mode .portfolio-content,
+    body.light-mode .blog-content,
+    body.light-mode .contact-form,
+    body.light-mode .about-content {
+        background: #ececf5 !important;
+        color: #23233a !important;
+        box-shadow: 0 4px 20px rgba(123,104,238,0.018);
+        border: 1.5px solid #bfc6e6 !important;
+        outline: 2px solid #7b68ee1a !important;
+        outline-offset: 0px;
+    }
+    body.light-mode .portfolio-item,
+    body.light-mode .blog-item {
+        background: #ececf5 !important;
+        color: #23233a !important;
+        box-shadow: 0 4px 20px rgba(123,104,238,0.018);
+        border: 1.5px solid #bfc6e6 !important;
+        outline: 2px solid #7b68ee1a !important;
+        outline-offset: 0px;
+    }
+    body.light-mode .advertisement-section > div > div {
+        border: 1.5px solid #bfc6e6 !important;
+        outline: 2px solid #7b68ee1a !important;
+        outline-offset: 0px;
+        background: #f6f7fb !important;
+    }
+    body.light-mode .nav-menu li a,
+    body.light-mode .footer-menu .footer-link {
+        color: #23233a !important;
+        background: none !important;
+    }
+    body.light-mode .nav-menu li a:hover,
+    body.light-mode .footer-menu .footer-link:hover {
+        color: #009bb8 !important;
+        background: rgba(123,104,238,0.045) !important;
+    }
+    body.light-mode .logo {
+        color: #7b68ee !important;
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+        background-clip: initial !important;
+        -webkit-background-clip: initial !important;
+        text-shadow: none !important;
+    }
+    body.light-mode .portfolio-content h3,
+    body.light-mode .blog-content h3,
+    body.light-mode .about-title,
+    body.light-mode .contact h2,
+    body.light-mode .blog-title {
+        color: #6b5fcf !important;
+    }
+    body.light-mode .portfolio-content p,
+    body.light-mode .blog-content p,
+    body.light-mode .about-content,
+    body.light-mode .about-list,
+    body.light-mode .contact-form,
+    body.light-mode .form-group label {
+        color: #2a2a3a !important;
+    }
+    body.light-mode .cta-button,
+    body.light-mode .about-read-more-btn {
+        background: linear-gradient(45deg, #7b68ee, #00b4d8) !important;
+        color: #fff !important;
+        border: none !important;
+    }
+    body.light-mode .cta-button:hover,
+    body.light-mode .about-read-more-btn:hover {
+        background: linear-gradient(45deg, #ff6b9d, #7b68ee) !important;
+        color: #fff !important;
+    }
+    body.light-mode .advertisement-section {
+        background: rgba(0,0,0,0.01) !important;
+    }
+    body.light-mode .advertisement-section p {
+        color: #23233a !important;
+    }
+    body.light-mode .form-group input,
+    body.light-mode .form-group textarea {
+        background: #e3e5ee !important;
+        color: #23233a !important;
+        border: 1px solid #d3d7f3 !important;
+    }
+    body.light-mode .form-group input:focus,
+    body.light-mode .form-group textarea:focus {
+        border-color: #7b68ee !important;
+    }
+    body.light-mode .about-list {
+        color: #3a3a4a !important;
+    }
+    body.light-mode .gemini-bot-msg,
+    body.light-mode .gemini-user-msg {
+        color: #23233a !important;
+    }
+    body.light-mode #gemini-chatbox {
+        background: #ececf5 !important;
+        color: #23233a !important;
+        border: 1.5px solid #bfc6e6 !important;
+        outline: 2px solid #7b68ee1a !important;
+        outline-offset: 0px;
+    }
+    body.light-mode #gemini-chat-header {
+        background: linear-gradient(45deg,#7b68ee,#00b4d8) !important;
+        color: #fff !important;
+    }
+    body.light-mode #gemini-chat-input {
+        background: #e3e5ee !important;
+        color: #23233a !important;
+    }
+    body.light-mode #gemini-chat-messages {
+        color: #23233a !important;
+    }
+    body.light-mode .gemini-bot-msg {
+        background: rgba(123,104,238,0.035) !important;
+    }
+    body.light-mode .gemini-user-msg {
+        background: linear-gradient(90deg,#7b68ee,#00b4d8) !important;
+        color: #fff !important;
+    }
+    body.light-mode ::-webkit-scrollbar-thumb {
+        background: rgba(123,104,238,0.045) !important;
+    }
+    body.light-mode .footer-menu .footer-link {
+        color: #23233a !important;
+    }
+    body.light-mode .footer-menu .footer-link:hover {
+        color: #009bb8 !important;
+        background: rgba(123,104,238,0.045) !important;
+    }
+    body.light-mode .footer-menu .footer-link::before {
+        background: linear-gradient(90deg, #7b68ee 0%, #00b4d8 100%) !important;
+        opacity: 0.045 !important;
+    }
+    body.light-mode .nav-menu .nav-link::before {
+        background: linear-gradient(90deg, #7b68ee 0%, #00b4d8 100%) !important;
+        opacity: 0.045 !important;
+    }
+    body.light-mode .nav-menu .nav-link:hover,
+    body.light-mode .nav-menu .nav-link:focus {
+        color: #009bb8 !important;
+        background: rgba(123,104,238,0.045) !important;
+    }
+    body.light-mode .nav-menu .nav-link {
+        color: #23233a !important;
+    }
+    body.light-mode .portfolio-content,
+    body.light-mode .blog-content,
+    body.light-mode .about-content,
+    body.light-mode .contact-form {
+        box-shadow: 0 4px 20px rgba(123,104,238,0.018) !important;
+    }
+    body.light-mode .portfolio-item img,
+    body.light-mode .blog-item img {
+        filter: none !important;
+    }
+    body.light-mode .contact-form,
+    body.light-mode .about-content {
+        border: 1.5px solid #bfc6e6 !important;
+        outline: 2px solid #7b68ee1a !important;
+        outline-offset: 0px;
+    }
+    body.light-mode .portfolio,
+    body.light-mode .blog,
+    body.light-mode .contact,
+    body.light-mode .about-us {
+        border-top: 1.5px solid #bfc6e6 !important;
+    }
+
+    /* Tambahan: Penyesuaian warna tulisan di bagian portofolio dan atas/bawah GPS */
+    body.light-mode .portfolio h2,
+    body.light-mode .portfolio .portfolio-content h3 {
+        color: #6b5fcf !important;
+    }
+    body.light-mode .portfolio .portfolio-content p,
+    body.light-mode .portfolio .portfolio-content .full-content {
+        color: #23233a !important;
+    }
+    body.light-mode .portfolio .cta-button {
+        color: #fff !important;
+    }
+    body.light-mode .gps-title,
+    body.light-mode .gps-location {
+        color: #6b5fcf !important;
+    }
+    body.light-mode .gps-location-desc {
+        color: #23233a !important;
+    }
+</style>
+<button class="theme-toggle-btn" id="theme-toggle-btn" title="Toggle dark/light mode" aria-label="Toggle dark/light mode">
+    <i class="fas fa-moon"></i>
+</button>
+<script>
+    // Theme toggle logic
+    function setTheme(mode) {
+        const btn = document.getElementById('theme-toggle-btn');
+        if (mode === 'light') {
+            document.body.classList.add('light-mode');
+            btn.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.body.classList.remove('light-mode');
+            btn.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+    // On load: check localStorage or system preference
+    (function() {
+        let theme = localStorage.getItem('theme');
+        if (!theme) {
+            theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        setTheme(theme);
+    })();
+    // Toggle button event
+    document.getElementById('theme-toggle-btn').onclick = function() {
+        const isLight = document.body.classList.contains('light-mode');
+        setTheme(isLight ? 'dark' : 'light');
+    };
+    // Update theme if system preference changes and no manual override
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) setTheme(e.matches ? 'light' : 'dark');
+    });
+</script>
+<!-- Dark/Light Mode Toggle End -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
